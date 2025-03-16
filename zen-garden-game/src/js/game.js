@@ -1,4 +1,6 @@
 // This file contains the main game logic. It initializes the game, handles user interactions, and manages the game state.
+import Garden from './garden.js';
+import Plant from './plants.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize game variables

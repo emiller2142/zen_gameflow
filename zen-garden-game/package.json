@@ -4,11 +4,13 @@
   "description": "A simple locally hosted game that allows users to plant and manage a zen garden.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "stop": "kill $(lsof -t -i:3000)"
   },
   "dependencies": {
     "express": "^4.17.1"
   },
   "author": "Your Name",
   "license": "MIT"
+  
 }
