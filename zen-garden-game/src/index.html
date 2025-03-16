@@ -1,0 +1,55 @@
+src/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Garden Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Zen Garden</h1>
+        </header>
+        
+        <div class="toolbar">
+            <div class="tool selected" data-tool="plant">
+                <img src="assets/sprites/plant-tool.webp" alt="Plant">
+                <span>Plant</span>
+            </div>
+            <div class="tool" data-tool="water">
+                <img src="assets/sprites/water-tool.webp" alt="Water">
+                <span>Water</span>
+            </div>
+            <div class="tool" data-tool="shears">
+                <img src="assets/sprites/shears-tool.webp" alt="Shears">
+                <span>Trim</span>
+            </div>
+        </div>
+        
+        <div class="plant-selector">
+            <div class="plant-option selected" data-plant="bonsai">Bonsai</div>
+            <div class="plant-option" data-plant="bamboo">Bamboo</div>
+            <div class="plant-option" data-plant="rock">Rock</div>
+            <div class="plant-option" data-plant="flower">Flower</div>
+        </div>
+        
+        <div id="garden"></div>
+        
+        <div class="zen-meter">
+            <div class="zen-fill"></div>
+            <span>Zen Level</span>
+        </div>
+        
+        <button id="refresh-game" class="button">Refresh Garden</button>
+    </div>
+    
+    <script type="module">
+        import Plant from './js/plants.js';
+        import Garden from './js/garden.js';
+        import './js/game.js';
+    </script>
+</body>
+</html>

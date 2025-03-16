@@ -1,0 +1,14 @@
+{
+  "name": "zen-garden-game",
+  "version": "1.0.0",
+  "description": "A simple locally hosted game that allows users to plant and manage a zen garden.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
