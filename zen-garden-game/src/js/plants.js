@@ -3,18 +3,18 @@ class Plant {
         this.type = type;
         this.x = x;
         this.y = y;
-        this.growthStage = 1; // 1 to 3
+        this.growthStage = 1; // 1 to 5 (increased from 3)
         this.element = null;
-        this.needsWater = true; // <-- Change to true so new plants can be watered immediately
+        this.needsWater = true;
         
         // Set plant-specific properties
         switch(type) {
             case 'bonsai':
-                this.maxGrowthStages = 3;
+                this.maxGrowthStages = 5; // Increased from 3
                 this.growthTime = 10000; // ms
                 break;
             case 'bamboo':
-                this.maxGrowthStages = 3;
+                this.maxGrowthStages = 5; // Increased from 3
                 this.growthTime = 8000;
                 break;
             case 'rock':
@@ -22,7 +22,7 @@ class Plant {
                 this.growthTime = 0;
                 break;
             case 'flower':
-                this.maxGrowthStages = 3;
+                this.maxGrowthStages = 5; // Increased from 3
                 this.growthTime = 5000;
                 break;
         }
@@ -43,14 +43,9 @@ class Plant {
     updateAppearance() {
         if (!this.element) return;
         
-        // Update growth class
-        this.element.classList.remove('growth-1', 'growth-2', 'growth-3');
+        // Update growth class - now includes 5 stages
+        this.element.classList.remove('growth-1', 'growth-2', 'growth-3', 'growth-4', 'growth-5');
         this.element.classList.add(`growth-${this.growthStage}`);
-        
-        // Instead of using transform scale, let the CSS classes handle size
-        // Remove this line:
-        // const scale = 0.5 + (this.growthStage * 0.25);
-        // this.element.style.transform = `scale(${scale})`;
         
         // Also update the needsWater state visually
         if (this.needsWater) {

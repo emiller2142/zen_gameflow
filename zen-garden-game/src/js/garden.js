@@ -52,7 +52,8 @@ class Garden {
     getPlantAt(x, y) {
         for (const plant of this.plants) {
             // Simple hit detection - check if click is within plant bounds
-            const plantSize = 30 * plant.growthStage;
+            // Use a scaling factor based on the growth stage (12px per growth level)
+            const plantSize = 12 * plant.growthStage;
             if (
                 x >= plant.x - plantSize &&
                 x <= plant.x + plantSize &&

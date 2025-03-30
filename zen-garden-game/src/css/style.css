@@ -154,17 +154,25 @@ h1 {
     content: "🌸";
 }
 
-/* Make the growth stages more visibly different with larger font-size jumps */
+/* Make the growth stages more visibly different with five stages now */
 .plant.growth-1 {
-    font-size: 20px;  /* Small */
+    font-size: 16px;  /* Extra Small */
 }
 
 .plant.growth-2 {
-    font-size: 40px;  /* Medium - double the small size */
+    font-size: 24px;  /* Small */
 }
 
 .plant.growth-3 {
-    font-size: 60px;  /* Large - triple the small size */
+    font-size: 36px;  /* Medium */
+}
+
+.plant.growth-4 {
+    font-size: 48px;  /* Large */
+}
+
+.plant.growth-5 {
+    font-size: 60px;  /* Extra Large */
 }
 
 /* Add this to your style.css file */
