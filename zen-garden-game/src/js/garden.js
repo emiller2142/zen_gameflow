@@ -38,7 +38,8 @@ class Garden {
     
     waterPlant(x, y) {
         const plant = this.getPlantAt(x, y);
-        if (plant && plant.needsWater) {
+        // Allow watering if plant is not at max growth, even if it doesn't "need" water
+        if (plant && plant.growthStage < plant.maxGrowthStages) {
             const success = plant.water();
             if (success) {
                 this.addZen(3);

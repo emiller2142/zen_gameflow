@@ -5,7 +5,7 @@ class Plant {
         this.y = y;
         this.growthStage = 1; // 1 to 3
         this.element = null;
-        this.needsWater = false;
+        this.needsWater = true; // <-- Change to true so new plants can be watered immediately
         
         // Set plant-specific properties
         switch(type) {
@@ -47,9 +47,17 @@ class Plant {
         this.element.classList.remove('growth-1', 'growth-2', 'growth-3');
         this.element.classList.add(`growth-${this.growthStage}`);
         
-        // Scale based on growth stage
-        const scale = 0.5 + (this.growthStage * 0.25);
-        this.element.style.transform = `scale(${scale})`;
+        // Instead of using transform scale, let the CSS classes handle size
+        // Remove this line:
+        // const scale = 0.5 + (this.growthStage * 0.25);
+        // this.element.style.transform = `scale(${scale})`;
+        
+        // Also update the needsWater state visually
+        if (this.needsWater) {
+            this.element.classList.add('needs-water');
+        } else {
+            this.element.classList.remove('needs-water');
+        }
     }
     
     water() {

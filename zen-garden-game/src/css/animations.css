@@ -34,13 +34,16 @@
 
 @keyframes snip {
     0% {
-        transform: scale(1);
+        transform: rotate(0deg);
     }
-    50% {
-        transform: scale(0.9);
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
     }
     100% {
-        transform: scale(1);
+        transform: rotate(0deg);
     }
 }
 
@@ -59,13 +62,24 @@
 .watering::before {
     content: "💧";
     position: absolute;
-    top: -10px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
     animation: waterDrop 1s ease infinite;
+    font-size: 24px; /* Make the water drop larger */
 }
 
 .styling {
+    animation: snip 0.5s ease;
+}
+
+.styling::before {
+    content: "✂️";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
     animation: snip 0.5s ease;
 }
 
