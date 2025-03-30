@@ -1,8 +1,8 @@
 class Panda {
     constructor(garden) {
         this.garden = garden;
-        this.x = Math.random() * garden.width;
-        this.y = Math.random() * garden.height;
+        this.x = garden.width / 2; // Start in center
+        this.y = garden.height / 2; // Start in center
         this.size = 1; // Starting size scale factor
         this.element = null;
         this.speed = 2;
@@ -10,6 +10,7 @@ class Panda {
         this.targetY = null;
         this.updateTargetTimeout = null;
         this.eatTimeout = null;
+        this.stuckAtEdgeCounter = 0; // Counter to detect when panda is stuck at edges
     }
     
     render() {
@@ -42,20 +43,77 @@ class Panda {
             clearTimeout(this.updateTargetTimeout);
         }
         
-        // 80% chance to move randomly, 20% chance to target a plant
-        if (Math.random() < 0.8 || this.garden.plants.length === 0) {
-            // Random movement
-            this.targetX = Math.random() * this.garden.width;
-            this.targetY = Math.random() * this.garden.height;
+        // Check if panda is near an edge
+        const isNearEdge = this.x < 60 || this.x > this.garden.width - 60 || 
+                          this.y < 60 || this.y > this.garden.height - 60;
+        
+        if (isNearEdge) {
+            this.stuckAtEdgeCounter++;
         } else {
-            // Target a random plant
-            const randomPlant = this.garden.plants[Math.floor(Math.random() * this.garden.plants.length)];
-            this.targetX = randomPlant.x;
-            this.targetY = randomPlant.y;
+            this.stuckAtEdgeCounter = 0;
         }
         
-        // Update target again in 3-8 seconds
-        const nextUpdateTime = 3000 + Math.random() * 5000;
+        // Determine target selection strategy
+        let strategy = 'random';
+        
+        // If stuck at edge, strongly bias toward center
+        if (this.stuckAtEdgeCounter >= 3) {
+            strategy = 'center';
+            this.stuckAtEdgeCounter = 0; // Reset counter
+        }
+        // More likely to target plants (40% chance instead of 20%)
+        else if (Math.random() < 0.4 && this.garden.plants.length > 0) {
+            strategy = 'plant';
+        }
+        // If near edge, 60% chance to move toward center
+        else if (isNearEdge && Math.random() < 0.6) {
+            strategy = 'center';
+        }
+        
+        // Apply the chosen strategy
+        switch (strategy) {
+            case 'center':
+                // Move toward center of garden
+                this.targetX = this.garden.width / 2 + (Math.random() * 100 - 50);
+                this.targetY = this.garden.height / 2 + (Math.random() * 100 - 50);
+                break;
+                
+            case 'plant':
+                // Find nearest plants
+                const plantsByDistance = [...this.garden.plants].sort((a, b) => {
+                    const distA = Math.hypot(a.x - this.x, a.y - this.y);
+                    const distB = Math.hypot(b.x - this.x, b.y - this.y);
+                    return distA - distB;
+                });
+                
+                // 70% chance to target one of the 3 closest plants, 30% chance for any random plant
+                if (plantsByDistance.length > 0) {
+                    let targetPlant;
+                    if (plantsByDistance.length >= 3 && Math.random() < 0.7) {
+                        // Choose from the 3 closest plants
+                        const index = Math.floor(Math.random() * 3);
+                        targetPlant = plantsByDistance[index];
+                    } else {
+                        // Choose any random plant
+                        targetPlant = plantsByDistance[Math.floor(Math.random() * plantsByDistance.length)];
+                    }
+                    
+                    this.targetX = targetPlant.x;
+                    this.targetY = targetPlant.y;
+                }
+                break;
+                
+            case 'random':
+            default:
+                // Random point but biased away from edges
+                const margin = 80;
+                this.targetX = margin + Math.random() * (this.garden.width - 2 * margin);
+                this.targetY = margin + Math.random() * (this.garden.height - 2 * margin);
+                break;
+        }
+        
+        // Update target again in 2-5 seconds (quicker decisions)
+        const nextUpdateTime = 2000 + Math.random() * 3000;
         this.updateTargetTimeout = setTimeout(() => this.updateTarget(), nextUpdateTime);
     }
     
