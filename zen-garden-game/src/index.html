@@ -1,4 +1,3 @@
-src/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +15,15 @@ src/index.html -->
         
         <div class="toolbar">
             <div class="tool selected" data-tool="plant">
-                <img src="assets/sprites/plant-tool.webp" alt="Plant">
+                <div class="tool-icon plant-icon"></div>
                 <span>Plant</span>
             </div>
             <div class="tool" data-tool="water">
-                <img src="assets/sprites/water-tool.webp" alt="Water">
+                <div class="tool-icon water-icon"></div>
                 <span>Water</span>
             </div>
             <div class="tool" data-tool="shears">
-                <img src="assets/sprites/shears-tool.webp" alt="Shears">
+                <div class="tool-icon shears-icon"></div>
                 <span>Trim</span>
             </div>
         </div>
@@ -46,10 +45,6 @@ src/index.html -->
         <button id="refresh-game" class="button">Refresh Garden</button>
     </div>
     
-    <script type="module">
-        import Plant from './js/plants.js';
-        import Garden from './js/garden.js';
-        import './js/game.js';
-    </script>
+    <script type="module" src="js/game.js"></script>
 </body>
 </html>

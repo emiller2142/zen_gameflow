@@ -61,6 +61,29 @@ h1 {
     margin-bottom: 5px;
 }
 
+/* Tool icons using emoji characters instead of external images */
+.tool-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.plant-icon::before {
+    content: "🌱";
+}
+
+.water-icon::before {
+    content: "💧";
+}
+
+.shears-icon::before {
+    content: "✂️";
+}
+
 .plant-selector {
     display: flex;
     justify-content: center;
@@ -81,11 +104,13 @@ h1 {
     color: white;
 }
 
+/* Garden background */
 #garden {
     width: 100%;
     height: 500px;
     background-color: #e8d6b0;
-    background-image: url('../assets/sprites/garden-background.webp');
+    /* Use a solid color instead of missing image */
+    background-image: linear-gradient(to bottom, #e8d6b0, #d4c090);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -95,15 +120,37 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Plant appearance - using emojis for placeholder visuals */
 .plant {
     position: absolute;
     width: 60px;
     height: 60px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center bottom;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
+.plant::before {
+    content: "";
+}
+
+.plant[data-type="bonsai"]::before {
+    content: "🪴";
+}
+
+.plant[data-type="bamboo"]::before {
+    content: "🎋";
+}
+
+.plant[data-type="rock"]::before {
+    content: "🪨";
+}
+
+.plant[data-type="flower"]::before {
+    content: "🌸";
 }
 
 .plant.growth-1 {

@@ -32,8 +32,9 @@ class Plant {
         if (!this.element) {
             this.element = document.createElement('div');
             this.element.classList.add('plant');
-            this.element.style.left = `${this.x}px`;
-            this.element.style.top = `${this.y}px`;
+            this.element.dataset.type = this.type; // Add data-type attribute for CSS selection
+            this.element.style.left = `${this.x - 30}px`; // Center the plant
+            this.element.style.top = `${this.y - 30}px`; // Center the plant
             this.updateAppearance();
         }
         return this.element;
@@ -46,8 +47,9 @@ class Plant {
         this.element.classList.remove('growth-1', 'growth-2', 'growth-3');
         this.element.classList.add(`growth-${this.growthStage}`);
         
-        // Update image - now using .webp format
-        this.element.style.backgroundImage = `url('assets/sprites/${this.type}-${this.growthStage}.webp')`;
+        // Scale based on growth stage
+        const scale = 0.5 + (this.growthStage * 0.25);
+        this.element.style.transform = `scale(${scale})`;
     }
     
     water() {
