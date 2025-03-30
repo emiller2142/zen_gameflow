@@ -96,4 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('[data-plant="bonsai"]').classList.add('selected');
         selectedPlant = 'bonsai';
     });
+
+    // Panda toggle
+    const togglePandaButton = document.getElementById('toggle-panda');
+    togglePandaButton.addEventListener('click', () => {
+        if (garden.panda.element.style.display === 'none') {
+            garden.panda.element.style.display = 'flex';
+            garden.panda.startMoving();
+            togglePandaButton.textContent = 'Hide Panda';
+        } else {
+            garden.panda.element.style.display = 'none';
+            togglePandaButton.textContent = 'Show Panda';
+        }
+    });
 });

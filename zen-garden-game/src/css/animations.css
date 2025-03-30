@@ -86,3 +86,24 @@
 .plant-grow {
     transition: transform 2s ease;
 }
+
+/* Panda animations */
+.panda.hopping {
+    animation: hop 0.5s ease;
+}
+
+.panda.eating {
+    animation: eat 1s ease;
+}
+
+@keyframes hop {
+    0% { transform: translateY(0) scale(var(--panda-size, 1)); }
+    50% { transform: translateY(-10px) scale(var(--panda-size, 1)); }
+    100% { transform: translateY(0) scale(var(--panda-size, 1)); }
+}
+
+@keyframes eat {
+    0% { transform: scale(var(--panda-size, 1)); }
+    50% { transform: scale(calc(var(--panda-size, 1) * 1.2)); }
+    100% { transform: scale(var(--panda-size, 1)); }
+}

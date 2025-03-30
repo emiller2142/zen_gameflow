@@ -1,4 +1,5 @@
-import Plant from './plants.js'; // <-- Add this import
+import Plant from './plants.js';
+import Panda from './panda.js';
 
 class Garden {
     constructor(element) {
@@ -8,6 +9,15 @@ class Garden {
         this.plants = [];
         this.zenLevel = 20; // start at 20%
         this.zenMeterElement = document.querySelector('.zen-fill');
+        
+        // Add panda
+        this.panda = new Panda(this);
+        this.element.appendChild(this.panda.render());
+        
+        // Start panda movement after a short delay
+        setTimeout(() => {
+            this.panda.startMoving();
+        }, 2000);
         
         // Update Zen meter
         this.updateZenMeter();
