@@ -33,8 +33,8 @@ class Plant {
             this.element = document.createElement('div');
             this.element.classList.add('plant');
             this.element.dataset.type = this.type; // Add data-type attribute for CSS selection
-            this.element.style.left = `${this.x - 30}px`; // Center the plant
-            this.element.style.top = `${this.y - 30}px`; // Center the plant
+            this.element.style.left = `${this.x - 30}px`;
+            this.element.style.top = `${this.y - 30}px`;
             this.updateAppearance();
         }
         return this.element;

@@ -1,3 +1,5 @@
+import Plant from './plants.js'; // <-- Add this import
+
 class Garden {
     constructor(element) {
         this.element = element;
